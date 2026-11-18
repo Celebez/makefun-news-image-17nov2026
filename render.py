@@ -37,8 +37,10 @@ def wrap(text, f, max_width):
     lines = []
     current = ""
     for word in words:
+        if f.getlength(word) / S > max_width:
+            raise ValueError(f"Word exceeds available logical width: {word!r}")
         candidate = word if not current else current + " " + word
-        if f.getlength(candidate) <= max_width:
+        if f.getlength(candidate) / S <= max_width:
             current = candidate
         else:
             if current:
@@ -51,8 +53,8 @@ def wrap(text, f, max_width):
 
 def paragraph(draw, text, f, x, y, max_width, line_height, fill, max_lines=None):
     lines = wrap(text, f, max_width)
-    if max_lines is not None:
-        lines = lines[:max_lines]
+    if max_lines is not None and len(lines) > max_lines:
+        raise ValueError(f"Text needs {len(lines)} lines, only {max_lines} fit: {text!r}")
     for i, line in enumerate(lines):
         draw.text((x * S, (y + i * line_height) * S), line, font=f, fill=fill)
     return len(lines)
@@ -284,7 +286,7 @@ def main():
         rr(d, (cx, cy, cx + card_w, cy + card_h), 6, fill=CARD, outline=BORDER, width=1)
         # category pill
         f_cat = font(SANS_BOLD, 10)
-        pill_w = f_cat.getlength(cat) + 14
+        pill_w = f_cat.getlength(cat) / S + 14
         rr(d, (cx + 10, cy + 9, cx + 10 + pill_w, cy + 26), 4, fill=cat_color)
         d.text(((cx + 10 + pill_w / 2) * S, (cy + 12) * S), cat, font=f_cat, fill="#ffffff", anchor="ma")
         # icon
@@ -306,9 +308,7 @@ def main():
     ticker = ("Apple Pay, iCloud, App Store and AppleCare went down; Bangladesh protesters stormed a police station; "
               "North Macedonia arrested five in an alleged Iran-linked plot in Greece.")
     f_tick = font(SANS, 13)
-    lines = wrap(ticker, f_tick, 800)
-    for j, ln in enumerate(lines[:2]):
-        d.text((36 * S, (968 + j * 15) * S), ln, font=f_tick, fill=MUTED)
+    paragraph(d, ticker, f_tick, 36, 968, 952, 15, MUTED, max_lines=2)
     d.text((988 * S, 1006 * S), "Sources: AP · Reuters · AFP · BBC · Al Jazeera", font=font(SANS, 10), fill="#8a7762", anchor="ra")
 
     out = img.resize((W, W), Image.LANCZOS)
