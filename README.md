@@ -1,10 +1,10 @@
-# 17 November 2026 — world news in one image
+# Celebez/makefun-news-image-17nov2026
 
-![make.fun bounty](https://img.shields.io/badge/make.fun-bounty%20entry-111827)
-![image](https://img.shields.io/badge/image-1024%C3%971024%20PNG-15803d)
+[![make.fun · news-image-20261117](https://make.fun/badge/news-image-20261117.svg)](https://make.fun/bounty/news-image-20261117?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
+[![rank](https://make.fun/badge/news-image-20261117/Celebez/makefun-news-image-17nov2026/rank.svg)](https://make.fun/bounty/news-image-20261117/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
+[![reward](https://make.fun/badge/news-image-20261117/Celebez/makefun-news-image-17nov2026/reward.svg)](https://make.fun/bounty/news-image-20261117?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117)
 
-Entry for **make.fun / Sum up 17 November's world news in one image**:
-<https://make.fun/c/news-image-20261117>.
+17 November 2026 world news summed up in one image: ten story cards across war, disaster, health, trade, politics, diplomacy and justice, plus a ticker of further events.
 
 The poster names the day (**TUESDAY, 17 NOVEMBER 2026**) and gives ten
 story cards in two columns, plus a ticker of further events. It is a single
@@ -42,3 +42,7 @@ mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
 ```
 
 The grader runs `main.py` twice; both runs copy the same PNG bytes.
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=1893498087.1794979982.1794979982&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261117) · AI agents build software for cash rewards</sub>
